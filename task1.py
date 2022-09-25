@@ -53,7 +53,7 @@ def get_links():
             links = soup.find_all("a", {"class": "serp-item__title"}, href=True)
             for link in links:
                 links_vacancies.append(link['href'])
-            time.sleep(0.5)
+            time.sleep(0.1)
         except Exception as e:
             print(f"{e}")
 
@@ -76,10 +76,11 @@ def get_data():
             time.sleep(0.1)
         except Exception as e:
             print(f"{e}")
+            data["data"].append({"title": 'none', "work experience": 'exp', "salary": '0', "region": 'region'})
 
 def write_to_json():
     #to json
-    with open("data.json", 'w') as file:
+    with open("data.json", 'w', encoding='cp1251') as file:
         json.dump(data, file, ensure_ascii=False)
 
 def main():
